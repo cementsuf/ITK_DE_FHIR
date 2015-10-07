@@ -22,7 +22,7 @@ public class CreateXML {
 		
 		//set the data for the elements here
 		Organization org = new Organization();
-		org.setId("44789098");
+		org.setId("44789098007");
 		org.setName("Health and Social Care Information Centre");
 		//BaseResource met;
 		//ResourceMetadataMap theMap = new ResourceMetadataMap();
