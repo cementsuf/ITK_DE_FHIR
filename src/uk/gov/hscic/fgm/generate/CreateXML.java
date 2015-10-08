@@ -18,6 +18,7 @@ public class CreateXML {
 		meta.put(ResourceMetadataKeyEnum.PROFILES, "urn:fhir.nhs.uk:profile/NHS-FGM-Organization");
 		
 		org.setResourceMetadata(meta);
+		
 		return org;
 		
 	}
