@@ -56,45 +56,52 @@ public class CreateXML {
 		MessageHeader msgH = new MessageHeader();
 		msgH.setId("14daadee-26e1-4d6a-9e6a-7f4af9b58877");
 		
-//		ResourceMetadataMap meta = new ResourceMetadataMap();
-//		meta.put(ResourceMetadataKeyEnum.UPDATED, "2015-06-22T14:04:44+00:00");
-//		meta.put(ResourceMetadataKeyEnum.PROFILES, "urn:fhir.nhs.uk:profile/NHS-FGM-MessageHeader-QueryParameters");
-//		msgH.setResourceMetadata(meta);
+		InstantDt dt = new InstantDt();
+		dt.setValueAsString("2015-06-22T14:04:44+00:00");
 		
-//		msgH.setIdentifier("13daadee-26e1-4d6a-9e6a-7f4af9b58977");
+		ResourceMetadataMap meta = new ResourceMetadataMap();
+		meta.put(ResourceMetadataKeyEnum.UPDATED, dt);
+		meta.put(ResourceMetadataKeyEnum.PROFILES, "urn:fhir.nhs.uk:profile/NHS-FGM-MessageHeader-QueryParameters");
+		msgH.setResourceMetadata(meta);
 		
-//		InstantDt dt = new InstantDt();
-//		dt.setValueAsString("2015-07-04T09:10:14+00:00");
-//		msgH.setTimestamp(dt);
+		msgH.setIdentifier("13daadee-26e1-4d6a-9e6a-7f4af9b58977");
 		
-//		CodingDt event = new CodingDt();
-//		event.setSystem("urn:fhir.nhs.uk:vs/MessageEvent");
-//		event.setCode("urn:nhs:names:services:fgmquery/FGMQuery_1_0");
-//		msgH.setEvent(event);
+		//InstantDt dt = new InstantDt();
+		dt.setValueAsString("2015-07-04T09:10:14+00:00");
+		msgH.setTimestamp(dt);
 		
-//		Source src = new Source();
-//		src.setName("FooBar NHS Trust");
-//		src.setSoftware("FooBar Patient Manager");
-//		src.setEndpoint("urn:system:asid/047192794544");
-//		ContactPointDt cp = new ContactPointDt();
-//		cp.setSystem(ContactPointSystemEnum.PHONE);
-//		cp.setValue("0207 444777");
-//		cp.setUse(ContactPointUseEnum.MOBILE);
-//		src.setContact(cp);
-//		
-//		Destination dest = new Destination();
-//		dest.setName("SPINE 2 MHS");
-//		dest.setEndpoint("urn:spinecore:asid/990101234567");
-//		msgH.addDestination(dest);
+		CodingDt event = new CodingDt();
+		event.setSystem("urn:fhir.nhs.uk:vs/MessageEvent");
+		event.setCode("urn:nhs:names:services:fgmquery/FGMQuery_1_0");
+		msgH.setEvent(event);
 		
-//		ResourceReferenceDt rr = new ResourceReferenceDt();
-//		rr.setReference("Practitioner/41fe704c-18e5-11e5-b60b-1697f925ec7b");
-//		rr.setDisplay("Dr Town Wood");
-//		msgH.setAuthor(rr);
-//		
-//		List<ResourceReferenceDt> rr2 = new ArrayList<ResourceReferenceDt>();
-//		rr2.add(rr);
-//		msgH.setData(rr2);
+		Source src = new Source();
+		src.setName("FooBar NHS Trust");
+		src.setSoftware("FooBar Patient Manager");
+		src.setEndpoint("urn:system:asid/047192794544");
+		ContactPointDt cp = new ContactPointDt();
+		cp.setSystem(ContactPointSystemEnum.PHONE);
+		cp.setValue("0207 444777");
+		cp.setUse(ContactPointUseEnum.MOBILE);
+		src.setContact(cp);
+		msgH.setSource(src);
+		
+		Destination dest = new Destination();
+		dest.setName("SPINE 2 MHS");
+		dest.setEndpoint("urn:spinecore:asid/990101234567");
+		msgH.addDestination(dest);
+		
+		ResourceReferenceDt rr = new ResourceReferenceDt();
+		rr.setReference("Practitioner/41fe704c-18e5-11e5-b60b-1697f925ec7b");
+		rr.setDisplay("Dr Town Wood");
+		msgH.setAuthor(rr);
+		
+		ResourceReferenceDt rr2 = new ResourceReferenceDt();
+		rr2.setReference("Parameters/7cb73a48-090d-469a-a2b2-04f1e6b11ea2");
+		List<ResourceReferenceDt> rr2list = new ArrayList<ResourceReferenceDt>();
+		rr2list.add(rr2);
+		msgH.setData(rr2list);
+		
 		return msgH;
 		
 	}
