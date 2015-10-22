@@ -70,7 +70,9 @@ public class MyTests {
 		Parameters checkParams = CreateXML.createParameters();
 		assertEquals("7cb73a48-090d-469a-a2b2-04f1e6b11ea2", checkParams.getId().toString());
 		assertEquals("RiskIndicator", checkParams.getParameter().get(0).getName());
+		assertEquals("FGM", checkParams.getParameter().get(0).getValue().toString());
 		assertEquals("NHSNumber", checkParams.getParameter().get(1).getName());
+		assertEquals("999999999", checkParams.getParameter().get(1).getValue().toString());
 	}
 	
 	@Test

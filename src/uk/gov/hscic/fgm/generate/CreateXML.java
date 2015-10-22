@@ -23,8 +23,8 @@ import ca.uhn.fhir.model.dstu2.valueset.ContactPointSystemEnum;
 import ca.uhn.fhir.model.dstu2.valueset.ContactPointUseEnum;
 import ca.uhn.fhir.model.dstu2.valueset.IdentifierUseEnum;
 import ca.uhn.fhir.model.dstu2.valueset.NameUseEnum;
-import ca.uhn.fhir.model.dstu2.valueset.PractitionerRoleEnum;
 import ca.uhn.fhir.model.primitive.InstantDt;
+import ca.uhn.fhir.model.primitive.StringDt;
 
 public class CreateXML {
 
@@ -32,7 +32,6 @@ public class CreateXML {
 		
 		final Bundle bndl = new Bundle();
 		
-		//Base Resource attributes
 		bndl.setId("13daadee-26e1-4d6a-9e6a-7f4af9b58877");
 		
 		ResourceMetadataMap meta = new ResourceMetadataMap();
@@ -44,7 +43,6 @@ public class CreateXML {
 	
 	public static Organization createOrganization(){
 		
-		//set the data for the elements here
 		Organization org = new Organization();
 		org.setId("13daadee-26e1-4d6a-9e6a-7f4af9b58878");
 		org.setName("THE WHITTINGTON HOSPITAL NHS TRUST");
@@ -63,7 +61,6 @@ public class CreateXML {
 	
 	public static MessageHeader createMessageHeader(){
 		
-		//set the data for the elements here
 		MessageHeader msgH = new MessageHeader();
 		msgH.setId("14daadee-26e1-4d6a-9e6a-7f4af9b58877");
 		
@@ -81,10 +78,10 @@ public class CreateXML {
 		msgH.setTimestamp(dt);
 		
 		CodingDt event = new CodingDt();
+		
 		event.setSystem("urn:fhir.nhs.uk:vs/MessageEvent");
 		event.setCode("urn:nhs:names:services:fgmquery/FGMQuery_1_0");
 		msgH.setEvent(event);
-		
 		Source src = new Source();
 		src.setName("FooBar NHS Trust").setSoftware("FooBar Patient Manager").setEndpoint("urn:system:asid/047192794544");
 		src.setContact(new ContactPointDt().setSystem(ContactPointSystemEnum.PHONE).setValue("0207 444777").setUse(ContactPointUseEnum.MOBILE));
@@ -107,7 +104,6 @@ public class CreateXML {
 	
 	public static Parameters createParameters() {
 		
-		//set the data for the elements here
 		Parameters param = new Parameters();
 		param.setId("7cb73a48-090d-469a-a2b2-04f1e6b11ea2");
 		
@@ -115,14 +111,15 @@ public class CreateXML {
 		meta.put(ResourceMetadataKeyEnum.PROFILES, "urn:fhir.nhs.uk:profile/NHS-FGM-QueryParameters");
 		param.setResourceMetadata(meta);
 		
-		param.addParameter(new Parameter().setName("RiskIndicator")).addParameter(new Parameter().setName("NHSNumber"));
+		param.addParameter(new Parameter().setName("RiskIndicator").setValue(new StringDt("FGM")));
+		param.addParameter(new Parameter().setName("NHSNumber").setValue(new StringDt("999999999")));
+
 		return param;
 		
 	}
 	
 	public static Practitioner createPractitioner(){
 		
-		//set the data for the elements here
 		Practitioner prac = new Practitioner();
 		prac.setId("41fe704c-18e5-11e5-b60b-1697f925ec7b");
 		ResourceMetadataMap meta = new ResourceMetadataMap();
@@ -139,18 +136,12 @@ public class CreateXML {
 		
 		List<PractitionerRole> PracRoleList = new ArrayList<PractitionerRole>();
 		
-		PractitionerRole pr = new PractitionerRole();
-		pr.setManagingOrganization(new ResourceReferenceDt().setReference("Organization/41fe704c-18e5-11e5-b60b-1697f925ec7b"));
+		PractitionerRole pr1 = new PractitionerRole();
+		pr1.setManagingOrganization(new ResourceReferenceDt().setReference("Organization/41fe704c-18e5-11e5-b60b-1697f925ec7b"));
 		
-		//Below is commented as the values need to be set as the Practitioner role.
-//		CodingDt coding2 = new CodingDt();
-//		coding2.setSystem("urn:fhir.nhs.uk:vs/SDSJobRoleName");
-//		coding2.setCode("R0090");
-//		coding2.setDisplay("Hospital Practitioner");
+		pr1.getRole().getCodingFirstRep().setSystem("urn:fhir.nhs.uk:vs/SDSJobRoleName").setCode("R0090").setDisplay("Hospital Practitioner");
 		
-		pr.setRole(PractitionerRoleEnum.DOCTOR);
-		
-		PracRoleList.add(pr);
+		PracRoleList.add(pr1);
 		
 		prac.setPractitionerRole(PracRoleList);
 		

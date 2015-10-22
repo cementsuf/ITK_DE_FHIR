@@ -26,8 +26,8 @@ public class GenerateExamplar {
 		final Entry entryParam = bndl.addEntry();
 		final Entry entryPrac = bndl.addEntry();
 		
-		entryBundle.setResource(orgn);
 		entryMh.setResource(mh);
+		entryBundle.setResource(orgn);
 		entryParam.setResource(pm);
 		entryPrac.setResource(prac);
 		
